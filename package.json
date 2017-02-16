@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "standard && node index.js"
+    "test": "standard"
   },
   "author": "",
   "license": "MIT",
