@@ -1,0 +1,30 @@
+{
+  "name": "twitter-bot",
+  "version": "1.0.0",
+  "description": "twitter bot bootstrap",
+  "main": "index.js",
+  "devDependencies": {
+    "standard": "^8.6.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "standard && node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "syllable": "2.0.0",
+    "twit": "^2.2.5",
+    "unique-random-array": "^1.0.0",
+    "unirest": "^0.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spences10/twitter-bot-bootstrap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spences10/twitter-bot-bootstrap/issues"
+  },
+  "homepage": "https://github.com/spences10/twitter-bot-bootstrap#readme"
+}
