@@ -8,7 +8,7 @@ var sentiment = require('./helpers/sentiment')
 var Twitter = new Twit(config)
 
 // Frequency in minutes
-var retweetFrequency = 10
+var haikuFrequency = 10
 var favoriteFrequency = 5
 
 // RANDOM QUERY STRING  =========================
@@ -22,7 +22,7 @@ var responseString = ura(strings.responseString)
 // A UTF-8, URL-encoded search query of 500 characters maximum, including operators.
 // Queries may additionally be limited by complexity.
 
-// RETWEET BOT ==========================
+// haiku BOT ==========================
 
 // find latest tweet according the query 'q' in params
 
@@ -31,7 +31,7 @@ var responseString = ura(strings.responseString)
 // * recent : return only the most recent results in the response
 // * popular : return only the most popular results in the response.
 
-var retweet = function () {
+var haiku = function () {
   var paramQS = queryString()
   paramQS += queryStringSubQuery()
   var paramRT = resultType()
@@ -44,7 +44,7 @@ var retweet = function () {
   Twitter.get('search/tweets', params, function (err, data) {
         // if there no errors
     if (!err) {
-            // grab ID of tweet to retweet
+            // grab ID of tweet to haiku
 
       var done = false
       var getCounter = 0
@@ -52,8 +52,8 @@ var retweet = function () {
       loopOfDESTINY: // eslint-disable-line 
       while (done === false) {
         try {
-          // var retweetId = data.statuses[getCounter].id_str
-          var retweetText = data.statuses[getCounter].text
+          // var haikuId = data.statuses[getCounter].id_str
+          var haikuText = data.statuses[getCounter].text
           var author = data.statuses[getCounter].user.screen_name
 
           console.log(getCounter)
@@ -66,7 +66,7 @@ var retweet = function () {
 
           var i = 0
           console.log('author? ' + author)
-          var splitText = retweetText.split(' ')
+          var splitText = haikuText.split(' ')
 
           if (splitText[0] === 'RT') {
             console.log('RT BOI GET OUTTA THERE: ', splitText[0])
@@ -129,12 +129,12 @@ var retweet = function () {
             // continue loopOfDESTINY
           }
         } catch (e) {
-          console.log('retweetId DERP!', e.message, 'Query String:', paramQS)
+          console.log('haikuId DERP!', e.message, 'Query String:', paramQS)
           return
         }
         done = true
       }
-            // Tell TWITTER to retweet
+            // Tell TWITTER to haiku
       Twitter.post('statuses/update', {
         status: firstLine + ' /\n' + secondLine + ' /\n' + thirdLine + ' /\n\n' + 'a bad haiku by @' + author
       }, function (err, response) {
@@ -143,17 +143,17 @@ var retweet = function () {
         }
                 // if there was an error while tweeting
         if (err) {
-          console.log('RETWEET ERROR! Duplication maybe...:', err, 'Query String:', paramQS)
+          console.log('haiku ERROR! Duplication maybe...:', err, 'Query String:', paramQS)
         }
       })
     } else { console.log('Something went wrong while SEARCHING...') }
   })
 }
 
-// retweet on bot start
-retweet()
-    // retweet in every x minutes
-setInterval(retweet, 1000 * 60 * retweetFrequency)
+// haiku on bot start
+haiku()
+    // haiku in every x minutes
+setInterval(haiku, 1000 * 60 * haikuFrequency)
 
 // FAVORITE BOT====================
 
