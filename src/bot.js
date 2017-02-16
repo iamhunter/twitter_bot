@@ -169,7 +169,7 @@ var favoriteTweet = function () {
   }
 
     // find the tweet
-  Twitter.get('search/tweets', params, function (data) {
+  Twitter.get('search/tweets', params, function (err, data) { // eslint-disable-line 
         // find tweets
     var tweet = data.statuses
     var randomTweet = ranDom(tweet) // pick a random tweet
