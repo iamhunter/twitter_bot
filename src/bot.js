@@ -41,42 +41,55 @@ var haiku = function () {
     lang: 'en'
   }
 
+// search tweets based on the paramaters defined above
   Twitter.get('search/tweets', params, function (err, data) {
         // if there no errors
     if (!err) {
-            // grab ID of tweet to haiku
-
       var done = false
       var getCounter = 0
 
+      // this loop enables the continues that we use.  It is not cosher with
+      // standard but that's ok.
       loopOfDESTINY: // eslint-disable-line 
       while (done === false) {
         try {
           // var haikuId = data.statuses[getCounter].id_str
+          // find the text and author of the tweet.
           var haikuText = data.statuses[getCounter].text
           var author = data.statuses[getCounter].user.screen_name
 
+          // logs the number of the tweet.
           console.log(getCounter)
 
+          // checks to make sure you are not haikuing yourself
+          // REPLACE THIS WITH YOUR OWN TWITTER ACCOUNT
           if (author === 'iamhunter_me') {
             console.log('author is iamhunter_me')
             getCounter++
             continue loopOfDESTINY // eslint-disable-line 
           }
 
+          // var i is the total count of syllables for your entire haiku
           var i = 0
           console.log('author? ' + author)
+          // takes the string text and stores it as an array of words
           var splitText = haikuText.split(' ')
 
+          // retweets start with RT and you don't want that confusing your bot.
+          // get outta there
           if (splitText[0] === 'RT') {
             console.log('RT BOI GET OUTTA THERE: ', splitText[0])
             getCounter++
             continue loopOfDESTINY // eslint-disable-line 
           }
 
-          i = syllable(splitText[0])
-
+          // counts syllables
           var count
+
+          // START TESTING THE FIRST LINE (5 SYLLABLES)
+
+          // starts the first word
+          i = syllable(splitText[0])
           var firstLine = splitText[0] + ' '
 
           for (count = 1; i < 5; count++) {
