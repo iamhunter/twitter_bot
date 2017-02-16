@@ -10,10 +10,10 @@ module.exports = {
     'Developer',
     'Software Developer',
     'Google'
-    
+
   ],
   queryStringSubQuery: [
-    '',
+    ''
 
   ],
   blockedStrings: [

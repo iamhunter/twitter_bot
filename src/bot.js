@@ -45,114 +45,98 @@ var retweet = function () {
         // if there no errors
     if (!err) {
             // grab ID of tweet to retweet
-            
+
       var done = false
       var getCounter = 0
-      
-loopOfDESTINY:
-      while(done == false)
-      {      
+
+      loopOfDESTINY: // eslint-disable-line 
+      while (done === false) {
         try {
-  
-          var retweetId = data.statuses[getCounter].id_str
+          // var retweetId = data.statuses[getCounter].id_str
           var retweetText = data.statuses[getCounter].text
           var author = data.statuses[getCounter].user.screen_name
-  
+
           console.log(getCounter)
-          
-  
-          if(author == "iamhunter_me")
-          {
+
+          if (author === 'iamhunter_me') {
             console.log('author is iamhunter_me')
             getCounter++
-            continue loopOfDESTINY
+            continue loopOfDESTINY // eslint-disable-line 
           }
-          
-          var i = 0;
-          console.log("author? " + author)
-          var splitText = retweetText.split(" ")
-          
-          if(splitText[0] == 'RT')
-          {
+
+          var i = 0
+          console.log('author? ' + author)
+          var splitText = retweetText.split(' ')
+
+          if (splitText[0] === 'RT') {
             console.log('RT BOI GET OUTTA THERE: ', splitText[0])
             getCounter++
-            continue loopOfDESTINY
+            continue loopOfDESTINY // eslint-disable-line 
           }
-          
+
           i = syllable(splitText[0])
-          
+
           var count
-          var firstLine = splitText[0] + " "
-          
-          for (count = 1; i < 5; count++)
-          {
+          var firstLine = splitText[0] + ' '
+
+          for (count = 1; i < 5; count++) {
             i += syllable(splitText[count])
-            console.log(i + " syllables in line one")
-            firstLine += splitText[count] + " "
-            if(i > 5)
-            {
+            console.log(i + ' syllables in line one')
+            firstLine += splitText[count] + ' '
+            if (i > 5) {
               console.log('More than 5 for the first line: ', firstLine)
               getCounter++
-              continue loopOfDESTINY
+              continue loopOfDESTINY // eslint-disable-line 
             }
           }
           console.log('Line one success: ', firstLine)
 
-          
           i = syllable(splitText[count])
-          var secondLine = splitText[count] + " "
+          var secondLine = splitText[count] + ' '
           count++
-          
-          while (i < 7)
-          {
+
+          while (i < 7) {
             i += syllable(splitText[count])
-            console.log(i + " line two")
-            secondLine += splitText[count] + " "
-            if(i > 7)
-            {
+            console.log(i + ' line two')
+            secondLine += splitText[count] + ' '
+            if (i > 7) {
               console.log('More than 7 for the second line: ', secondLine)
               getCounter++
-              continue loopOfDESTINY
+              continue loopOfDESTINY // eslint-disable-line 
             }
             count++
           }
-          
+
           i = syllable(splitText[count])
-          var thirdLine = splitText[count] + " "
+          var thirdLine = splitText[count] + ' '
           count++
-          
-          while (i < 5)
-          {
+
+          while (i < 5) {
             i += syllable(splitText[count])
-            console.log(i + " line three")
-            thirdLine += splitText[count] + " "
-            if(i > 5)
-            {
+            console.log(i + ' line three')
+            thirdLine += splitText[count] + ' '
+            if (i > 5) {
               console.log('More than 5 for the third line: ', thirdLine)
               getCounter++
-              continue loopOfDESTINY
+              continue loopOfDESTINY // eslint-disable-line 
             }
             count++
           }
-          
-          if(splitText[count] != null)
-          {
+
+          if (splitText[count] != null) {
             console.log('EXTRA EXTRA READ ALL ABOUT IT: ' + splitText[count])
             getCounter++
-            //continue loopOfDESTINY
+            // continue loopOfDESTINY
           }
-          
-  
         } catch (e) {
           console.log('retweetId DERP!', e.message, 'Query String:', paramQS)
           return
         }
         done = true
-
       }
             // Tell TWITTER to retweet
       Twitter.post('statuses/update', {
-        status: firstLine + " /\n" + secondLine + " /\n" + thirdLine + " /\n\n" + "a bad haiku by @" + author
+        status: firstLine + ' /\n' + secondLine + ' /\n' + thirdLine + ' /\n\n' + 'a bad haiku by @' + author
       }, function (err, response) {
         if (response) {
           console.log('-------------------------------', ' Query String:', paramQS, '-------------------------------')
@@ -185,7 +169,7 @@ var favoriteTweet = function () {
   }
 
     // find the tweet
-  Twitter.get('search/tweets', params, function (err, data) {
+  Twitter.get('search/tweets', params, function (data) {
         // find tweets
     var tweet = data.statuses
     var randomTweet = ranDom(tweet) // pick a random tweet
