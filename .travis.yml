@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "6"
+  - "6.1"
+  - "5.11"
+  - "0.6"
+  - "iojs"
+  
+  
+env:
+- NODE_ENV=TEST
+  
+
+"scripts": {
+  "test": "vows --spec"
+},
