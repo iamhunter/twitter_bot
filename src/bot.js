@@ -8,7 +8,7 @@ var sentiment = require('./helpers/sentiment')
 var Twitter = new Twit(config)
 
 // Frequency in minutes
-var haikuFrequency = 10
+var haikuFrequency = 30
 var favoriteFrequency = 5
 
 // RANDOM QUERY STRING  =========================
@@ -86,7 +86,7 @@ var haiku = function () {
           // counts syllables
           var count
 
-          // START TESTING THE FIRST LINE (5 SYLLABLES)
+          // START TESTING THE FIRST LINE ()
 
           // starts the first word
           i = syllable(splitText[0])
