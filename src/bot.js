@@ -8,7 +8,7 @@ var sentiment = require('./helpers/sentiment')
 var Twitter = new Twit(config)
 
 // Frequency in minutes
-var haikuFrequency = 10
+var haikuFrequency = 30
 var favoriteFrequency = 5
 
 // RANDOM QUERY STRING  =========================
