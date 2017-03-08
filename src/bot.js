@@ -86,7 +86,7 @@ var haiku = function () {
           // counts syllables
           var count
 
-          // START TESTING THE FIRST LINE (5 SYLLABLES)
+          // START TESTING THE FIRST LINE ()
 
           // starts the first word
           i = syllable(splitText[0])
